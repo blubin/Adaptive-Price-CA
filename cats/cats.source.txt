@@ -1,0 +1,5 @@
+CATS sources are available at:
+https://github.com/kevinlb1/CATS
+
+Information about cats available at:
+https://www.cs.ubc.ca/~kevinlb/CATS/

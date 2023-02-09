@@ -1,0 +1,6 @@
+# You will need a integer program solver 
+# * CBC (comes with pulp)
+# * CPLEX (commercial)
+numpy
+pulp
+pytest
