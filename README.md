@@ -10,12 +10,12 @@ clearing.
 
 This implementation is the companion to the following paper.  Please cite any use or reference to this work accordingly:
 
-{
+```
 Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive Pricing in Combinatorial Auctions."]() In _Management Science_, Forthcoming.
-}
+```
 
 For reference, this paper is in turn based on an earlier conference paper:
 
-{
+```
 Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive-price Combinatorial Auctions."](https://dl.acm.org/doi/abs/10.1145/3328526.3329615) In _Proceedings of the 2019 ACM Conference on Economics and Computation_, pp. 749-750. 2019.
-}
+```
