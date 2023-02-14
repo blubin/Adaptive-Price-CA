@@ -8,9 +8,21 @@ is achieved.  The mechanism can also switch from anonymous
 to non-anonymous prices if and when this is necessary for
 clearing.
 
-This implementation is the companion to the following paper.  Please cite any use or reference to this work accordingly:
+This implementation is the companion to the following paper, please cite any reference or use accordingly:
 
 > Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive Pricing in Combinatorial Auctions."]() In _Management Science_, Forthcoming.
+
+Correspondinb BibTex is as follows:
+
+```
+@article{lahaielubin23adaptive,
+  author={Lahaie, S{\'e}bastien and Lubin, Benjamin},
+  title={Adaptive Pricing in Combinatorial Auctions},
+  journal={Management Science},
+  year={2023, forthcoming},
+  publisher={{INFORMS}},
+}
+```
 
 For reference, this paper is in turn based on an earlier conference paper:
 
