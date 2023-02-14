@@ -25,4 +25,4 @@ Corresponding BibTex is as follows:
 
 For reference, this paper is based on an earlier conference paper:
 
-> Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive-price Combinatorial Auctions."](https://dl.acm.org/doi/abs/10.1145/3328526.3329615) In _Proceedings of the 2019 ACM Conference on Economics and Computation_, pp. 749-750. 2019.
+> Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive-price Combinatorial Auctions."](https://dl.acm.org/doi/abs/10.1145/3328526.3329615) In _Proceedings of the 20th ACM Conference on Economics and Computation (EC-19)_, pp. 749-750. 2019.
