@@ -12,7 +12,7 @@ This implementation is the companion to the following paper, please cite any ref
 
 > Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive Pricing in Combinatorial Auctions."]() In _Management Science_, Forthcoming.
 
-Correspondinb BibTex is as follows:
+Corresponding BibTex is as follows:
 
 ```
 @article{lahaielubin23adaptive,
