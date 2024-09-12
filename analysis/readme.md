@@ -2,14 +2,14 @@
 
 ## Overview 
 
-This directory contains the *experimental results files (zips)*, and
+This directory contains the raw experimental results (zips), and
 the rather involved scripts needed to process them into the tables
 and plots shown in the paper.  Details on how to run these
 scripts is provided below.
 
 ## Requirements
 
-To run the phase 2 analysis, you will need a modern Bash shell
+To run the analysis, you will need a modern Bash shell
 interpreter, and an install of R.  The scripts were origionally run on
 a PC with the cygwin environment (which provides bash and latex on that OS), 
 but they should work on linux or mac as well.
@@ -23,9 +23,10 @@ been tested to work with R 4.4.1 with some ignorable warnings.
 ## Setup
 
 The first step in running the analysis scripts is to configure your
-environment.  To do this, edit the `common.sh` script and specify the
+environment.  To do this, edit the `common.sh` script and verify that the
 path to your R environment as indicated in the file.   The file
-is pre-configued to work on most Linux/Mac/PC-cygwin machines.
+is pre-configued to work on most Linux/Mac/PC-cygwin machines, but
+it is a good idea to double check the paths.
 
 Next run the `Setup.sh` file to configure your R environment.  This
 will download and install all of the needed R packages into a local
