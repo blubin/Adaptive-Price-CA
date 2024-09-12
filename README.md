@@ -42,7 +42,7 @@ presented in the paper has two phases.
 
 ### Experiments
 
-The first phase is stored in the `experiments` directory of the 
+The first phase is stored in the [experiments](https://github.com/blubin/Adaptive-Price-CA/blob/main/experiments/)  directory of the 
 repository.  In this phase, we run a set of experiments, each focusing on a
 different aspect of the proposed mechanism, including the core
 behavior, and specialized experiemnts on strategic behavior and on
