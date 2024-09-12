@@ -14,7 +14,7 @@ Please cite any reference or use accordingly:
 Corresponding BibTex is as follows:
 
 ```
-@article{lahaielubin23adaptive,
+@article{lahaielubin24adaptive,
   author={Lahaie, S{\'e}bastien and Lubin, Benjamin},
   title={Adaptive Pricing in Combinatorial Auctions},
   journal={Management Science},
