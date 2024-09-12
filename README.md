@@ -63,7 +63,7 @@ from the literature (e.g. CATS and QuadraticValuation).  We include both the
 generator code/binaries and the resulting input data 
 in the `experiments` directory.  The output of this phase are large `.zip` files
 containing data about each experimental run.  This output is
-stored in the `analysis` directory (i.e., Phase 2), where it is the input.
+stored in the `analysis` directory (i.e., the second phase), where it is the input.
 
 Please see the [readme](https://github.com/blubin/Adaptive-Price-CA/blob/main/experiments/readme.md) 
 file in the `experiments` directory for more details on spot checking 
