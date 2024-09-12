@@ -40,9 +40,9 @@ The directory tree is organized as follows:
 
 - `analysis`: Contains this readme and the scripts themselves.
 - `analysis/packages`: Created by the `Setup.sh` script, this contains the downloaded R packages
-- `analysis/results`: Results of the *Phase 1* experiments, i.e., `.zip` files.  This is the *input* to the *Phase 2* analysis described herein. 
-- `analysis/plots`: *Phase 2 Output* -- The plots needed for the paper
-- `analysis/tables`: *Phase 2 Output* -- The tables needed for the paper
+- `analysis/results`: Results of the *experiments*, i.e., `.zip` files.  This is the *input* to the *analysis* described herein. 
+- `analysis/plots`: *analysis Output* -- The plots needed for the paper
+- `analysis/tables`: *analysis Output* -- The tables needed for the paper
 
 The `results` directory is further broken into the following
 sub-directories:
