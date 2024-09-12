@@ -18,7 +18,7 @@ Corresponding BibTex is as follows:
   author={Lahaie, S{\'e}bastien and Lubin, Benjamin},
   title={Adaptive Pricing in Combinatorial Auctions},
   journal={Management Science},
-  year={2023, forthcoming},
+  year={2024, forthcoming},
   publisher={{INFORMS}},
 }
 ```
