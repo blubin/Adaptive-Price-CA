@@ -57,11 +57,18 @@ to the correct location
 
 The directory tree is organized as follows:
 
-- `file` -- explanation
+- `adaptiveCA`: python source files
+- `cats`: binaries for the [CATS Domain](https://www.cs.ubc.ca/~kevinlb/CATS/) generator
+- `data`: cached instance files for each domain instance used in the experiments
+- `tests`: unit tests
+
+The scripts are at the top level directory.
 
 ### Generator and input file details
 
 ### Output file details
+
+### Code Details
 
 ## The Scripts
 
