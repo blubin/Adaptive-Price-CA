@@ -2,15 +2,10 @@
 
 # A script to run one of our experiments in python
 
-# First Make sure the commands are ok in a machine-specific way:
-if [ $HOSTNAME == "SOMETHING" ]; then
-    function python() { /usr/local/bin/python2.7 $@; }
-fi
-
-# Now the rest...
+source ./common.sh
 
 if [ "$#" -lt 2 ]; then
-    echo "Usage: experiment.sh {run | analyze} name {arguments}"
+    echo "Usage: experiment.sh run name {arguments}"
     exit 1
 fi
 
