@@ -145,7 +145,59 @@ if you are having trouble getting a script to run (see [Setup](https://github.co
 
 ### Spot Instances
 
-### Full Experiments (Advanced) 
+We include a script that enables the "spot testing" of a single auction instance from within one of the
+auction experiments.  This is a nice way to verify that the code works and is running, it can also be 
+useful for debugging.  In most cases, a single auction instance can be run using the default CBC solver
+without installing CPLEX (which requires obtaining an academicly licensed copy from IBM and significant 
+installation overhead).  Running via CBC will be slow, but typically is possible.  
+
+To run a "spot instance", use the script `experiment/run_auction_instance.sh`
+which is a bash wrapper around `experiments/adaptiveCA/run_auction_instance.py`.
+
+There are a number of command-line options for this script, which are displayed if you
+run the command specifying only `--help`.  For reference, these options are as follows:
+
+- `--auction_name`: Name of the auction class
+- '--epsilon`: Epsilon value
+- `--stepc`: Step size
+- `--epoch`: Number of epochs
+- `--personalized`: Whether to use personalized prices
+- `--generator_param_name`: Generator parameter name
+- `--scalebyvalue`: Whether to scale by value
+- `--maxiter'`: Maximum number of iterations
+- `--maxtime`: Maximum time in seconds
+- `--idx`: Instance index
+
+Most of these parameters have reasonable defaults.  An example usage is as follows:
+
+> run_auction_instance.sh
+
+### Full Experiments (Advanced and Time Consuming) 
+
+To run a full experiment, use the scripy `experiments/experiment.sh`.  This will
+run a single experiment as defined by a class in `experiments/adaptiveCA/experiments`.
+
+Usage of this script is as follows:
+
+> ./experiment.sh run EXPERIMENT_NAME EXPERIMENT_PARAM_SET
+
+Here EXPERIMENT_NAME is the basename of the experiment class files in `experiments/adaptiveCA/experiments`.
+Each experimental file may have multiple configurations that can be requested, and the
+EXPERIMENT_PARAM_SET parameter select one.
+
+Example usage is as follows:
+
+> ./experiment.sh run basic cats_reg_epsilon_stepc
+
+**NOTE:** Running a single experiment can take a month on a high-end workstation, even
+when running on CPLEX instead of CBC.  In practice, it is likely that the experiments
+want to be run on a computational grid spread across multiple computers.  Each such grid
+has its own configuration and syntax, so we leave it to the user to wrap the `experiment.sh` 
+script into whatever grid environment you are using.
+
+**Note2:** If by contrast you do wish to run an experiment directly on a linux/unix workstation, 
+you will likely want to use the [nohup](https://en.wikipedia.org/wiki/Nohup) command to establish 
+a long-running process that is not tied to a TTY.
 
 ### Running Pytest (Optional) 
 
@@ -161,7 +213,7 @@ Running these tests should really only be needed if adding or modifying the code
 
 ## Code Details (Advanced)
 
-The auction code is rather involved, but we here provide a high-level overview of the included code files.
+The auction code is rather involved, but we here provide a high-level overview of the included code files:
 
 ### Auction and Math Programming 
 
@@ -178,9 +230,9 @@ The auction code is rather involved, but we here provide a high-level overview o
 
 ### Experimental Setup
 
-- `experiments/adaptiveCA/experiments/experiment.py`:
-- `experiments/adaptiveCA/experiments/cpurestrict.py`:
-- `experiments/adaptiveCA/experiments/debug_experiment.py`:
+- `experiments/adaptiveCA/experiments/experiment.py`: Base classes for defining experiments.
+- `experiments/adaptiveCA/experiments/cpurestrict.py`: utility class to control how many cores an experiment gets (needed to ensure runtime data is accurate).
+- `experiments/adaptiveCA/experiments/debug_experiment.py`: helper class to facilitate debugging experiments
 
 - `experiments/adaptiveCA/experiments/basic.py`: Run the *basic* experiment for most auction types
 - `experiments/adaptiveCA/experiments/cutting.py`: Run the *basic* experiment for the *Adaptive Cutting* auction
