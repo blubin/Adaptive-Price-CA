@@ -159,11 +159,11 @@ and also PC-specific version that allows usage from a cmd prompt on a PC (which 
 
 Running these tests should really only be needed if adding or modifying the code in the repo.
 
-### Code Details (Advanced)
+## Code Details (Advanced)
 
 The auction code is rather involved, but we here provide a high-level overview of the included code files.
 
-#### Auction and Math Programming 
+### Auction and Math Programming 
 
 - `experiments/adaptiveCA/agents.py': Define different types of agent preferences (e.g., MultiMinded or QuadraticValued)
 - `experiments/adaptiveCA/auctions.py': Define the different auction types used, including both the Adaptive Price Auction and various baseline alternatives.
@@ -176,7 +176,7 @@ The auction code is rather involved, but we here provide a high-level overview o
 - `experiments/adaptiveCA/wd.py': Implemenation of the core winner determination MIP for the auctions based on the [PULP](https://coin-or.github.io/pulp/) library and the `mpsolve.py` interface.
 - `experiments/adaptiveCA/util/modcsv.py`: A custom implmentation of CSV writing that allows the *insertion* of data into existing files, which the default CSV implementation in python does not do.  This is used for certain high-performance operations in `instrumation.py`.
 
-#### Experimental Setup
+### Experimental Setup
 
 - `experiments/adaptiveCA/experiments/experiment.py`:
 - `experiments/adaptiveCA/experiments/cpurestrict.py`:
