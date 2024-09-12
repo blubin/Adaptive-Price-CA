@@ -27,3 +27,6 @@ tex, eps and pdf files suitable for inclusion in the paper.  There
 is a considerable amount of processing needed to convert the raw
 data into a form appropriate for the paper, but it can still be 
 run on a standard desktop/laptop in a reasonable amount of time.
+
+This directory contains the Phase 1 implementation, and is
+described in detail below.
