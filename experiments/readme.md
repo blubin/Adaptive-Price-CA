@@ -143,7 +143,7 @@ All scripts for running the experiments are at the top level `experiments` direc
 bash format.  All of the scripts source the `common.sh` file to find paths to e.g. python, so edit this file
 if you are having trouble getting a script to run (see [Setup](https://github.com/blubin/Adaptive-Price-CA/tree/main/experiments#setup), above).
 
-### Spot Instances
+### Spot Instances (Where to start)
 
 We include a script that enables the "spot testing" of a single auction instance from within one of the
 auction experiments.  This is a nice way to verify that the code works and is running, it can also be 
