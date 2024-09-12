@@ -1,4 +1,4 @@
-# Experimental Code For *Adpative Price Combinatorial Auctions*
+# Phase 1: Experiments For *Adpative Price Combinatorial Auctions*
 
 ## Overview of Experimental Pipeline
 
