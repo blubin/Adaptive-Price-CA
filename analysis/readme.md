@@ -44,8 +44,8 @@ The directory tree is organized as follows:
 - `analysis/plots`: *analysis Output* -- The plots needed for the paper
 - `analysis/tables`: *analysis Output* -- The tables needed for the paper
 
-The `results` directory is further broken into the following
-sub-directories:
+The experimental `results` directory (again, these are inputs to the analysis) 
+is further broken into the following sub-directories:
 
 - `basic`: The *basic* experiment, for most auction types.
 - `cutting`: The *basic* experiment, specifically for the *cutting* auction.
