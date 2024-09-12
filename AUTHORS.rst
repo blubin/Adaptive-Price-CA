@@ -2,6 +2,6 @@
 Developers
 ==========
 
-* Sebastien Lahaie <sebastien.lahaie@gmail.com>
+* Sebastien Lahaie <slahaie@google.com>
 * Benjamin Lubin <blubin@bu.edu>
   
