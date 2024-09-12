@@ -44,7 +44,9 @@ it worth creating them.  If you do wish to pursue this route,
 you can do so via [virtualenv](https://pypi.org/project/virtualenv/).
 
 ### CPLEX (Optional for running spot instances, required for large-scale experiments)
-To run a spot instance, the opensource solver loaded as part of the pcakages is likely
+To run a spot instance, the opensource solver loaded as part of the the
+[PULP](https://coin-or.github.io/pulp/) package used, called 
+[CBC](https://github.com/coin-or/Cbc), is likely
 sufficient.  To run the full experiments it will be unacceptably slow.  Accordingly
 you will need to download and install the
 [CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio)
@@ -53,7 +55,9 @@ variables, the code will automatically pick it up and start using it.  If you ar
 indoubt about which version of the solver the code is using, uncomment
 the print statement in the `solve(pulp_problem, ...)` call in 
 `experiments/adaptiveCA/mpsolve.py` and the code will indicate if it has found
-CPLEX or fallen back on the default (slow) solver.
+CPLEX or fallen back on the default (slow) solver.  For more information
+on configuring PULP to work with CPLEX see 
+[How to configure a solver in PuLP](https://coin-or.github.io/pulp/guides/how_to_configure_solvers.html).
 
 ### CATS (Optional) 
 If you want to use [CATS](https://www.cs.ubc.ca/~kevinlb/CATS/) to create 
@@ -133,22 +137,44 @@ code yourself, the `experiments/experiments` directory will be created and popul
 
 Because both of the raw output file types are in CSV format, it is easy to inspect the results of experiments.
 
-### Code Details
+## The Scripts
+
+All scripts for running the experiments are at the top level `experiments` directory, and are provided in
+bash format.  All of the scripts source the `common.sh` file to find paths to e.g. python, so edit this file
+if you are having trouble getting a script to run (see [Setup](https://github.com/blubin/Adaptive-Price-CA/tree/main/experiments#setup), above).
+
+### Spot Instances
+
+### Full Experiments (Advanced) 
+
+### Running Pytest (Optional) 
+
+We include a top level script for running the unit tests:
+
+> run_pytest.sh
+
+and also PC-specific version that allows usage from a cmd prompt on a PC (which gives coloring, otherwise unavailable in cygwin).
+
+> run_pytest.bat
+
+Running these tests should really only be needed if adding or modifying the code in the repo.
+
+### Code Details (Advanced)
 
 The auction code is rather involved, but we here provide a high-level overview of the included code files.
 
 #### Auction and Math Programming 
 
-- `experiments/adaptiveCA/agents.py': 
-- `experiments/adaptiveCA/auctions.py': 
-- `experiments/adaptiveCA/generatorfactory.py': 
-- `experiments/adaptiveCA/generators.py': 
-- `experiments/adaptiveCA/instrumentation.py': 
-- `experiments/adaptiveCA/mpsolve.py': 
-- `experiments/adaptiveCA/prices.py': 
-- `experiments/adaptiveCA/structs.py': 
-- `experiments/adaptiveCA/wd.py':
-- `experiments/adaptiveCA/util/modcsv.py`:
+- `experiments/adaptiveCA/agents.py': Define different types of agent preferences (e.g., MultiMinded or QuadraticValued)
+- `experiments/adaptiveCA/auctions.py': Define the different auction types used, including both the Adaptive Price Auction and various baseline alternatives.
+- `experiments/adaptiveCA/generatorfactory.py': Top level interface to the domain generator code 
+- `experiments/adaptiveCA/generators.py':  Low level code for calling *CATS* or implementing the *Qudratic Value* domain.
+- `experiments/adaptiveCA/instrumentation.py': Code to instrument data about running auction instances and record that data in the `experiments/experiments` directory for subsequent analysis by scripts in the `analysis` branch of the repo.
+- `experiments/adaptiveCA/mpsolve.py': Unified access to various Math Program solvers including both CPEX and a default Open Source solver. This wraps [PULP](https://coin-or.github.io/pulp/)'s entry point to provide additional control over things like the number of CPU cores used.
+- `experiments/adaptiveCA/prices.py': Various types of pricing structures used to implement the auctions 
+- `experiments/adaptiveCA/structs.py': Various data structures used to define auctions, e.g. allocations, valuations etc.
+- `experiments/adaptiveCA/wd.py': Implemenation of the core winner determination MIP for the auctions based on the [PULP](https://coin-or.github.io/pulp/) library and the `mpsolve.py` interface.
+- `experiments/adaptiveCA/util/modcsv.py`: A custom implmentation of CSV writing that allows the *insertion* of data into existing files, which the default CSV implementation in python does not do.  This is used for certain high-performance operations in `instrumation.py`.
 
 #### Experimental Setup
 
@@ -161,11 +187,3 @@ The auction code is rather involved, but we here provide a high-level overview o
 - `experiments/adaptiveCA/experiments/lca.py`: Run the *basic* experiment for the *Linear Clock* auction
 - `experiments/adaptiveCA/experiments/strategy.py`: Run the *strategy* experiment to investigate bidder manipulation.
 - `experiments/adaptiveCA/experiments/xorprices.py`: Run the *xorprices* experiment that gathers additional pricing information.
-
-## The Scripts
-
-### Spot Instances
-
-### (Advanced) Full Experiments
-
-### (Optional) Running Pytest
