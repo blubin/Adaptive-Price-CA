@@ -9,7 +9,7 @@ clearing.
 This implementation is the companion to the following paper.
 Please cite any reference or use accordingly:
 
-> Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive Pricing in Combinatorial Auctions."]() In _Management Science_, Forthcoming.
+> Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive Pricing in Combinatorial Auctions."](https://pubsonline.informs.org/action/doSearch?AllField=adaptive+pricing+in+combinatorial+auctions&SeriesKey=mnsc) In _Management Science_, Forthcoming.
 
 Corresponding BibTex is as follows:
 
