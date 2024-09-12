@@ -42,8 +42,8 @@ presented in the paper has two phases.
 
 ### Experiments
 
-The first phase is stored in the `experiments` directory of the repository.  
-In this phase, we run a set of experiments, each focusing on a
+The first phase is stored in the `experiments` directory of the 
+repository.  In this phase, we run a set of experiments, each focusing on a
 different aspect of the proposed mechanism, including the core
 behavior, and specialized experiemnts on strategic behavior and on
 price trajectories.  Each of these experiments invoves running
@@ -60,7 +60,7 @@ an opensource solver.
 The input to this phase is data from domain generators 
 from the literature (e.g. CATS and QuadraticValuation).  We include both the 
 generator code/binaries and the resulting input data 
-in the `experiments` directory.  The output of this phase are large zip files
+in the `experiments` directory.  The output of this phase are large `.zip` files
 containing data about each experimental run.  This output is
 stored in the `analysis` directory (i.e., Phase 2), where it is the input.
 
@@ -70,12 +70,20 @@ and/or running experiments using this implementation.
 
 ### Analysis
 
-In the Phase 2, we use a set of Bash and R scripts to
-process these zip files, in order to create the plots and tables
-presented in the paper.  The Phase 2 directory thus includes both the 
-.zip files (output from Phase 1, and input to Phase 2) and the
-scripts used to process them.  The output of Phase 2 is a set of 
-tex, eps and pdf files suitable for inclusion in the paper.  There 
-is a considerable amount of processing needed to convert the raw
-data into a form appropriate for the paper, but it can still be 
+The second phase is stored in the `analysis` directory of the repository
+In this phase, we use a set of Bash and R scripts to
+process the `.zip` files created in the *experiments* (described above), 
+in order to create the plots and tables presented in the paper.  
+The `analysis` directory thus includes both the 
+`.zip` files (output from the experimental phase, representing months 
+of compute time, and reproducible as described above with comensurate 
+computational effort) and the scripts used to process them.  
+The output of the analysis phase is a set of `.tex`, `.eps` and `.pdf` 
+files that summarize and colate the experimental data into a form suitable 
+for inclusion in the paper.  There is a considerable amount of processing 
+needed to convert the raw data into such a form, but it can still be 
 run on a standard desktop/laptop in a reasonable amount of time.
+
+Please see the [readme](https://github.com/blubin/Adaptive-Price-CA/blob/main/analysis/readme.md) 
+file in the `analysis` directory for more details on how
+to run the analysis scripts from a checked-out copy of the repository.
