@@ -159,6 +159,8 @@ The auction code is rather involved, but we here provide a high-level overview o
 - `experiments/adaptiveCA/experiments/basic.py`: Run the *basic* experiment for most auction types
 - `experiments/adaptiveCA/experiments/cutting.py`: Run the *basic* experiment for the *Adaptive Cutting* auction
 - `experiments/adaptiveCA/experiments/lca.py`: Run the *basic* experiment for the *Linear Clock* auction
+- `experiments/adaptiveCA/experiments/strategy.py`: Run the *strategy* experiment to investigate bidder manipulation.
+- `experiments/adaptiveCA/experiments/xorprices.py`: Run the *xorprices* experiment that gathers additional pricing information.
 
 ## The Scripts
 
