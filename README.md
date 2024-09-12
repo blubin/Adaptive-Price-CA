@@ -42,7 +42,8 @@ presented in the paper has two phases.
 
 ### Experiments
 
-The first phase is stored in the [experiments](https://github.com/blubin/Adaptive-Price-CA/blob/main/experiments/)  directory of the 
+The first phase is stored in the [experiments](https://github.com/blubin/Adaptive-Price-CA/blob/main/experiments/) 
+directory of the 
 repository.  In this phase, we run a set of experiments, each focusing on a
 different aspect of the proposed mechanism, including the core
 behavior, and specialized experiemnts on strategic behavior and on
@@ -70,7 +71,8 @@ and/or running experiments using this implementation.
 
 ### Analysis
 
-The second phase is stored in the `analysis` directory of the repository
+The second phase is stored in the [analysis](https://github.com/blubin/Adaptive-Price-CA/blob/main/analysis/) 
+directory of the repository
 In this phase, we use a set of Bash and R scripts to
 process the `.zip` files created in the *experiments* (described above), 
 in order to create the plots and tables presented in the paper.  
