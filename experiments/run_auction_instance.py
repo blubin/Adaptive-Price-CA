@@ -10,19 +10,28 @@ def main():
     parser = argparse.ArgumentParser(description='Run auction instance.')
 
     # Define command-line arguments
-    parser.add_argument('--print_console', type=bool, default=True, help='Whether to print auction progress to console')
+    parser.add_argument('--print_console', type=bool, default=False, help='Whether to print auction progress to console')
     parser.add_argument('--auction_name', type=str, required=True, help='Name of the auction class')
     parser.add_argument('--generator_param_name', type=str, required=True, help='Generator parameter name')
-    parser.add_argument('--epsilon', type=float, default=1.0, help='Epsilon value')
-    parser.add_argument('--stepc', type=float, default=1.0, help='Step size')
+    parser.add_argument('--epsilon', type=float, default=0.05, help='Auction discount')
+    parser.add_argument('--stepc', type=float, default=1.0, help='Step size scaling factor')
     parser.add_argument('--epoch', type=int, default=10, help='Number of epochs')
     parser.add_argument('--personalized', type=bool, default=True, help='Whether to use personalized prices')
     parser.add_argument('--scalebyvalue', type=bool, default=True, help='Whether to scale by value')
-    parser.add_argument('--maxiter', type=int, default=100, help='Maximum number of iterations')
-    parser.add_argument('--maxtime', type=int, default=60, help='Maximum time in seconds')
+    parser.add_argument('--maxiter', type=int, default=1000, help='Maximum number of auction rounds')
+    parser.add_argument('--maxtime', type=int, default=120, help='Maximum time in seconds')
     parser.add_argument('--idx', type=int, default=1, help='Instance index')
 
     args = parser.parse_args()
+
+    if args.auction_name not in [
+        "IBundle",
+        "LinearClockAuction",
+        "LinearSubgradientAuction",
+        "LinearHeuristicAuction",
+        "AdaptiveCuttingAuction",
+    ]:
+        raise ValueError("Invalid auction name")
 
     if args.print_console:
         logging.getLogger().setLevel(logging.INFO)
