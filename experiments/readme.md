@@ -130,32 +130,56 @@ if you are having trouble getting a script to run (see [Setup](https://github.co
 
 ### Spot Instances (Where to start)
 
-We include a script that enables the "spot testing" of a single auction instance from within one of the
-auction experiments.  This is a nice way to verify that the code works and is running, it can also be 
-useful for debugging.  In most cases, a single auction instance can be run using the default CBC solver
-without installing CPLEX (which requires obtaining an academically licensed copy from IBM and significant 
-installation overhead).  Running via CBC will be slow, but typically is possible.  
+We include a script that enables one to run our adaptive-price auction, or one of the baselines, on a single auction instance from the experiments run in the paper. This allows one to reproduce results for single auction runs, and it is also useful for debugging. In most cases, a single auction instance can be run using the default CBC solver
+without installing CPLEX.
 
-To run a "spot instance", use the script `experiment/run_auction_instance.sh`
-which is a bash wrapper around `experiments/adaptiveCA/run_auction_instance.py`.
+An example usage is as follows:
 
-There are a number of command-line options for this script, which are displayed if you
-run the command specifying only `--help`.  For reference, these options are as follows:
+> python run_auction_instance.py
 
-- `--auction_name`: Name of the auction class
-- '--epsilon`: Epsilon value
-- `--stepc`: Step size
-- `--epoch`: Number of epochs
-- `--personalized`: Whether to use personalized prices
-- `--generator_param_name`: Generator parameter name
-- `--scalebyvalue`: Whether to scale by value
-- `--maxiter'`: Maximum number of iterations
-- `--maxtime`: Maximum time in seconds
-- `--idx`: Instance index
+#### Command-Line Arguments for `run_auction_instance.py`
 
-Most of these parameters have reasonable defaults.  An example usage is as follows:
+- `--print_console` (type: `bool`, default: `True`)
+  - Whether to print auction progress to console.
 
-> run_auction_instance.sh
+- `--auction_name` (type: `str`, required: `True`)
+  - Name of the auction class. 
+
+SubgradientAuction
+LinearSubgradientAuction
+QuadraticSubgradientAuction
+AdaptiveSubgradientAuction
+HeuristicAuction
+LinearHeuristicAuction
+QuadraticHeuristicAuction
+AdaptiveHeuristicAuction
+AdaptiveCuttingAuction
+IBundle
+LinearClockAuction
+
+- `--generator_param_name` (type: `str`, required: `True`)
+  - Generator parameter name.
+
+- `--epsilon` (type: `float`, default: `1.0`)
+  - Epsilon value.
+
+- `--stepc` (type: `float`, default: `1.0`)
+  - Step size.
+
+- `--epoch` (type: `int`, default: `10`)
+  - Number of epochs.
+
+- `--personalized` (type: `bool`, default: `True`)
+  - Whether to use personalized prices.
+
+- `--maxiter` (type: `int`, default: `100`)
+  - Maximum number of iterations.
+
+- `--maxtime` (type: `int`, default: `60`)
+  - Maximum time in seconds.
+
+- `--idx` (type: `int`, default: `1`)
+  - Instance index.
 
 ### Full Experiments (Advanced and Time Consuming) 
 
