@@ -135,7 +135,7 @@ without installing CPLEX.
 
 An example usage is as follows:
 
-> `python run_auction_instance.py --print_console True --auction_name AdaptiveCuttingAuction --generator cats_reg_g30b150`
+> `python run_auction_instance.py --auction_name AdaptiveCuttingAuction --generator cats_reg_g30b150`
 
 The result of this run would be stored in the following file as the default instance index is 1:
 > `Adaptive-Price-CA/experiments/basic_command_line/instances/instance#Idx_1.csv`
@@ -158,10 +158,10 @@ The result of this run would be stored in the following file as the default inst
   - Step size scaling factor.
 
 - `--epoch` (type: `int`, default: `10`)
-  - Number of epochs.
+  - Number of epochs for price expansion in the adaptive-price auction.
 
 - `--personalized` (type: `bool`, default: `True`)
-  - Whether to use personalized prices.
+  - Whether to use personalized prices from the beginning of the auction.
 
 - `--maxiter` (type: `int`, default: `1000`)
   - Maximum number of auction rounds.
