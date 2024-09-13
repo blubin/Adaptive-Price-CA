@@ -2,10 +2,10 @@
 
 Combinatorial Auctions have been developed over the past 25 years to facilitate trade in settings where bidders have complex 
 (complement and/or substitute) preferences over indivisible items.  There is a long literature on various mechanisms within
-this class.  One important question that arrises in this literature is how to price the packages that are sold in such auctions.
+this class.  One important question that arises in this literature is how to price the packages that are sold in such auctions.
 
 For sufficiently complex settings, linear prices will fail to clear combinatorial preferences.  To address this, the auction
-implemented here starts with linear prices and then adaptively adds a modest set of non-linear terms such that market-clearing
+implemented here starts with linear prices and then adaptively adds non-linear terms such that market-clearing
 is achieved.  The mechanism can also switch from anonymous to non-anonymous prices if and when this is necessary for
 clearing.
 
@@ -31,13 +31,12 @@ For reference, this paper is based on an earlier conference paper:
 
 ## Overview of Experimental Pipeline and This Codebase
 
-This repository contains an implementation of the adaptively-priced 
+This repository contains an implementation of the adaptive-price
 combinatorial auction described in the above paper.  It also contains an 
 experimental harness to test it, and a set of scripts for analyzing the 
-resulting data.  The motivation for the implementation and analysis are 
-the results presented in the above paper.
+resulting data. 
 
-The experimental pipeline captured herein and used to provide the results 
+The experimental pipeline used to provide the results 
 presented in the paper has two phases.
 
 ### Experiments
@@ -46,17 +45,17 @@ The first phase is stored in the [experiments](https://github.com/blubin/Adaptiv
 directory of the 
 repository.  In this phase, we run a set of experiments, each focusing on a
 different aspect of the proposed mechanism, including the core
-behavior, and specialized experiemnts on strategic behavior and on
-price trajectories.  Each of these experiments invoves running
-multiple mechanisms (not just the mechanism being evalauted, but 
+behavior, and specialized experiments on strategic behavior and on
+price trajectories.  Each of these experiments involves running
+multiple mechanisms (not just the mechanism being evaluated, but 
 also benchmark mechanisms as well) across hundreds of instances 
 drawn from several domains.  Consequently, running the experiments 
-takes months of compute time on a highend workstation, or access to 
-grid infrastructure.  Running the full experiments also requires 
-configuration and access to the
+takes months of compute time on a high-end workstation, or access to 
+grid infrastructure. Reproducing the results in the paper as faithfully
+as possible requires configuration and access to the 
 [CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio)
 solver, though individual auction instances can typically be run with
-an opensource solver.  
+an open source solver.  
 
 The input to this phase is data from domain generators 
 from the literature (e.g. CATS and QuadraticValuation).  We include both the 
@@ -77,14 +76,10 @@ In this phase, we use a set of Bash and R scripts to
 process the `.zip` files created in the *experiments* (described above), 
 in order to create the plots and tables presented in the paper.  
 The `analysis` directory thus includes both the 
-`.zip` files (output from the experimental phase, representing months 
-of compute time, and reproducible as described above with comensurate 
-computational effort) and the scripts used to process them.  
+`.zip` files (output from the experimental phase) and the scripts used to process them.  
 The output of the analysis phase is a set of `.tex`, `.eps` and `.pdf` 
-files that summarize and colate the experimental data into a form suitable 
-for inclusion in the paper.  There is a considerable amount of processing 
-needed to convert the raw data into such a form, but it can still be 
-run on a standard desktop/laptop in a reasonable amount of time.
+files that summarize and collate the experimental data into a form suitable 
+for inclusion in the paper.
 
 Please see the [readme](https://github.com/blubin/Adaptive-Price-CA/blob/main/analysis/readme.md) 
 file in the `analysis` directory for more details on how
