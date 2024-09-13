@@ -33,7 +33,7 @@ class BasicExperiment(AuctionExperiment):
     def _default_param_set_name(self):
         return 'default'
 
-    def __default_param_set(self, mods = None):
+    def _default_param_set(self, mods = None):
         if mods is None:
             mods = {}
         params = {

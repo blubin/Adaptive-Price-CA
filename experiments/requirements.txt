@@ -1,6 +1,4 @@
-# You will need a integer program solver 
-# * CBC (comes with pulp)
-# * CPLEX (commercial)
-numpy
-pulp
-pytest
+numpy==1.16.6
+PuLP==1.6.8
+pyparsing==2.4.7
+scipy==1.2.3

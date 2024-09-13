@@ -824,6 +824,12 @@ class AuctionExperimentInstrumentation(AuctionInstrumentation):
             self.experiment._filename_for_instance(self.params,
                                                    self.idx,
                                                    'instance')
+        
+        # Ensure the directory exists
+        inst_dir = os.path.dirname(inst_filename)
+        if not os.path.exists(inst_dir):
+            os.makedirs(inst_dir)
+
         fieldnames = self._param_headers()
         fieldnames.extend(['rounds',
                            'status',
@@ -909,8 +915,6 @@ class AuctionExperimentInstrumentation(AuctionInstrumentation):
             if 'heuristic_pool_num' in fields:
                 del fields['heuristic_pool_num']
 
-        # Don't include number of instances:
-        del fields['num_instances']
         # Record the class as a string, not a class:
         fields['auction_class'] = fields['auction_class'].__name__
         return fields
