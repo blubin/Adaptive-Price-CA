@@ -68,6 +68,20 @@ Please see the [readme](https://github.com/blubin/Adaptive-Price-CA/blob/main/ex
 file in the `experiments` directory for more details on spot checking 
 and/or running experiments using this implementation.
 
+#### Runtime
+
+The following table lists the average runtime in seconds over 100 runs for each combination of auction and instance generator in the experiments from the paper. To obtain an approximate runtime to reproduce the experiments for a generator, multiply the _Total_ for that row by 100. For example, running the full experiments for the Arbitrary generator takes approximately 43 hours of CPU time. Note that these runtimes were achieved using the CPLEX solver. 
+
+| Generator | IBundle | Linear Clock | Linear Exact | Linear Packing | Adaptive | *Total* |
+|-----------|---------|--------------|--------------|----------------|----------|-------|
+| Arbitrary | 12.1 | 32.2 | 1357.0 | 107.3 | 48.3 | 1556.9 |
+| Paths | 5.9 | 224.5 | 2712.8 | 30.1 | 171.5 | 3144.8 |
+| Regions | 7.9 | 34.4 | 1113.2 | 50.2 | 39.1 | 1244.8 |
+| Quadratic | 10813.9 | 50.1 | 236.7 | 897.9 | 137.5 | 12136.1 |
+| *Mean* | 2710.0 | 85.3 | 1354.9 | 271.4 | 99.1 |  |
+
+
+
 ### Analysis
 
 The second phase is stored in the [analysis](https://github.com/blubin/Adaptive-Price-CA/blob/main/analysis/) 
