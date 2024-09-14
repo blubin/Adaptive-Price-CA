@@ -14,7 +14,7 @@ def main():
     parser.add_argument('--auction_name', type=str, required=True, help='Name of the auction class')
     parser.add_argument('--generator_param_name', type=str, required=True, help='Generator parameter name')
     parser.add_argument('--epsilon', type=float, default=0.05, help='Auction discount')
-    parser.add_argument('--stepc', type=float, default=1.0, help='Step size scaling factor')
+    parser.add_argument('--stepc', type=float, default=0.02, help='Step size scaling factor')
     parser.add_argument('--epoch', type=int, default=10, help='Number of epochs')
     parser.add_argument('--personalized', type=bool, default=True, help='Whether to use personalized prices')
     parser.add_argument('--scalebyvalue', type=bool, default=True, help='Whether to scale by value')

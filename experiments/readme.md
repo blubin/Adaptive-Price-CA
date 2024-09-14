@@ -154,7 +154,7 @@ The result of this run would be stored in the following file as the default inst
 - `--epsilon` (type: `float`, default: `0.05`)
   - Auction discount. For iBundle, this also corresponds to the price increment.
 
-- `--stepc` (type: `float`, default: `1.0`)
+- `--stepc` (type: `float`, default: `0.02`)
   - Step size scaling factor.
 
 - `--epoch` (type: `int`, default: `10`)
