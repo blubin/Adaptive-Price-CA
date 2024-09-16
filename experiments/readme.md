@@ -201,10 +201,6 @@ We include a top level script for running the unit tests:
 
 > run_pytest.sh
 
-and also PC-specific version that allows usage from a cmd prompt on a PC:
-
-> run_pytest.bat
-
 Running these tests should only be needed if adding or modifying the code in the repository.
 
 ## Code Details (Advanced)
