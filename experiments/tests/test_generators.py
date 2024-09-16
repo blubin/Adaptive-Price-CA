@@ -43,6 +43,12 @@ class TestQuadValue:
         assert len(instance1a.agents[1].get_terms_by_size(2)) == 3
         assert len(instance1a.agents[2].get_terms_by_size(2)) == 3
 
+'''
+
+GETTING CATS RUNNING IS HARD.  
+We have therefore commented out the cats tests
+If you have the cats environment setup, you can uncomment
+this block to test that runs the cats generator.
 
 class TestCATSGenerator:
 
@@ -116,6 +122,7 @@ class TestCATSGenerator:
         assert get_bundle(instance1a,7,0) == Bundle([0, 1, 2, 3, 4])
         assert get_bundles(instance1a,8,[0,1]) == \
                set([Bundle([1,2,3,4]), Bundle([0,1,2,3])])
+'''
 
 class TestExpansionDistribution:
 
