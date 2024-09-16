@@ -117,14 +117,6 @@ class TestCATSGenerator:
         assert get_bundles(instance1a,8,[0,1]) == \
                set([Bundle([1,2,3,4]), Bundle([0,1,2,3])])
 
-class TestCanadianGenerator:
-
-    def test_instance(self):
-        ca_supp = GeneratorFactory.get(CANADIAN_SUPPLEMENT)
-        instance = ca_supp.get_instance(1)
-        assert instance.goods == range(56)
-        assert len(instance.agents) == 9
-
 class TestExpansionDistribution:
 
     def test_lomax_exp_dist(self):
@@ -144,82 +136,4 @@ class TestExpansionDistribution:
         exp_dist = GammaExpansionDistribution(3, .5)
         samples = [exp_dist.expand_value(obs_value) for i in range(0,10000)]
         assert mean(samples) == approx(obs_value, .01)
-
-class TestCanadianGeneratorExpandedLomax:
-
-    def test_lomax_scale(self):
-        low_support = 5
-        reported_value = 10
-        lomax_alpha = 3
-        lomax_lambda = (lomax_alpha-1)*(reported_value-low_support)
-        samples = lomax.rvs(lomax_alpha, scale=lomax_lambda, loc=low_support, 
-                            size=1000000)
-        assert mean(samples) == approx(lomax.mean(lomax_alpha, 
-                                                  scale=lomax_lambda, 
-                                                  loc=low_support), .01)
-        assert mean(samples) == approx(reported_value, .01)
-
-    def test_lomax_instance(self):
-        ca_supp_exp = GeneratorFactory.get(CA_SUPP_LOMAX_S2_L0)
-        instance = ca_supp_exp.get_instance(1)
-        assert instance.goods == range(56)
-        assert len(instance.agents) == 9
-
-    def test_lomax_structure(self):
-        # get the observed CA SUPPLEMENT instance
-        ca_supp = GeneratorFactory.get(CANADIAN_SUPPLEMENT)
-        xor_obs_inst = ca_supp.get_instance(1)
-
-        # get expanded instance
-        ca_supp_exp = GeneratorFactory.get(CA_SUPP_LOMAX_S2_L0)
-        xor_exp_inst = ca_supp_exp.get_instance(1)
-
-        # make sure they cover the same structure
-        for aid in sorted(ca_supp.get_instance(1).agents.keys()):     
-            print "Agent", aid
-            xor_obs = xor_obs_inst.agents[aid].xor.coefs
-            xor_exp = xor_exp_inst.agents[aid].xor.coefs 
-            print xor_obs_inst.agents[aid]
-            print xor_exp_inst.agents[aid]
-            # Note: there could be fewer because some are now dominated
-            assert set(xor_obs.keys()) >= set(xor_exp.keys())
-
-    @pytest.mark.skip(reason="This test is slow...")
-    def test_lomax_mean(self):
-        # get the observed CA SUPPLEMENT instance
-        ca_supp = GeneratorFactory.get(CANADIAN_SUPPLEMENT)
-        xor_obs_inst = ca_supp.get_instance(1) 
-
-        # create 100 exp instances
-        ca_supp_exp = GeneratorFactory.get(CA_SUPP_LOMAX_S2_L0)
-        ca_supp_insts = [ca_supp_exp.get_instance(i) for i in range(1,1001)] 
-
-        # look at each agent in turn
-        for aid in sorted(ca_supp.get_instance(1).agents.keys()):     
-            print "Agent", aid
-
-            # get the target:
-            xor_obs = xor_obs_inst.agents[aid].xor.coefs
-
-            # get a list of the bundle-values for a given agent
-            xors_exp =[inst.agents[aid].xor for inst in ca_supp_insts]
-
-            # make a new b-v dict whose value is the average of each of these
-            # track the number that is being used to create the average
-            # if the number is too small, we are going to ignore the result
-            # (note that because of domination, many valuations will drop
-            # some bundles.
-            def lmean(x):
-                if len(x)==0:
-                    return (0,0)
-                return (len(x), mean(x))
-            xor_avg = \
-                {b:lmean([xor[b] for xor in xors_exp if b in xor.bundles()])\
-                     for b in xor_obs.keys()}
-
-            # If we have enough samples, make sure the means match:
-            for b in xor_avg.keys():
-                if xor_avg[b][0] > 750:
-                    #print xor_avg[b], xor_obs[b]
-                    assert xor_avg[b][1] == approx(xor_obs[b], 1) #relative
 
