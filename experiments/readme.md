@@ -1,58 +1,44 @@
-# Experiments For *Adpative Pricing in Combinatorial Auctions*
+# Experiments For *Adaptive Pricing in Combinatorial Auctions*
 
 ## Overview 
 
 This directory contains the implementation of an *Adaptive Price
 Combinatorial Auction*, as well as alternative auctions used as
 benchmarks.  It also contains the domain generators
-used to create instances on which to experiment on the auction, 
-code for defining particular experiments, scripts for running
-both individual auction instances as a spot check, as well as full 
+used to create instances for auction experiments, 
+code for defining particular experiments, and scripts for running
+both individual auction instances as a spot check as well as full 
 experiments.
-
-Details on this content and how to use them are provided below.
 
 ## Requirements
 
 ### Bash
 To run the scripts, you will need a modern `Bash` shell
-interpreter.  The scripts were origionally run on linux, but
+interpreter.  The scripts were originally run on linux, but
 they should also work on a Mac or on a PC with the [cygwin](https://www.cygwin.com/) 
 environment (which provides `bash` on that OS), 
 
 ### Python
 To run the auction, you will need 
-[Python 2.7](https://www.python.org/downloads/release/python-2718/),
-when installing please note where your python has been installed
-(or if you already have Python 2.7 installed, note its location
-on your machine).
+[Python 2.7](https://www.python.org/downloads/release/python-2718/).
 
 ### Python Packages
 You will also need install several packages, as specified in 
 [requirements.txt](https://github.com/blubin/Adaptive-Price-CA/blob/main/experiments/requirements.txt).
-Please install these packages using `pip` as usual in python:
+These can be installed using `pip` as usual in python:
 
 > pip install -r requirements.txt
 
-Note: for this command make sure you are using the python 2.7 version 
-of pip, not python 3 if you also have python 3 installed on your system
-(i.e. you may need to use the fully qualified path to pip in the above command).
-
-Note that virtual environments in Python 2.7 are not
-as sophisticated as Python 3, and we don't generally consider
-it worth creating them.  If you do wish to pursue this route,
-you can do so via [virtualenv](https://pypi.org/project/virtualenv/).
-
 ### CPLEX (Optional for running spot instances, required for large-scale experiments)
-To run a spot instance, the opensource solver loaded as part of the the
+To run a spot instance, the open source solver loaded as part of the the
 [PULP](https://coin-or.github.io/pulp/) package used, called 
 [CBC](https://github.com/coin-or/Cbc), is likely
-sufficient.  To run the full experiments it will be unacceptably slow.  Accordingly
-you will need to download and install the
+sufficient.  To run the experiments at full scale and reproduce the paper's results as
+faithfully as possible, you will the
 [CPLEX](https://www.ibm.com/products/ilog-cplex-optimization-studio)
 solver.  If CPLEX is properly installed with the appropriate environment
 variables, the code will automatically pick it up and start using it.  If you are 
-indoubt about which version of the solver the code is using, uncomment
+in doubt about which version of the solver the code is using, uncomment
 the print statement in the `solve(pulp_problem, ...)` call in 
 `experiments/adaptiveCA/mpsolve.py` and the code will indicate if it has found
 CPLEX or fallen back on the default (slow) solver.  For more information
@@ -60,13 +46,14 @@ on configuring PULP to work with CPLEX see
 [How to configure a solver in PuLP](https://coin-or.github.io/pulp/guides/how_to_configure_solvers.html).
 
 ### CATS (Optional) 
-If you want to use [CATS](https://www.cs.ubc.ca/~kevinlb/CATS/) to create 
-new domain instances beyond those included in the paper, you will need to ensure that
-your environment is setup to run the binary.  The binary is included in the `experiments/cats` 
-directory.  Please follow the link above for instructions on configuring CATS.
+If you would like to use [CATS](https://www.cs.ubc.ca/~kevinlb/CATS/) to create 
+new domain instances beyond those used for the paper's experiments, you will need to ensure that
+your environment is setup to run the binary.  Binaries for Windows and Unix are included in the `experiments/cats` 
+directory.  For MacOS, CATS needs to be built from source.
+Please follow the link above for instructions on configuring CATS.
 
 ### Pytest (Optional) 
-If you want to be able to use [pytest](https://docs.pytest.org/en/stable/getting-started.html)
+If you would like to be able to use [pytest](https://docs.pytest.org/en/stable/getting-started.html)
 you will need to install it following the instructions at this link.
 
 ## Setup
@@ -74,7 +61,7 @@ you will need to install it following the instructions at this link.
 The bash scripts need to know where your `python` executable is.  They all source
 the `common.sh` script to determine this.  `common.sh` is coded to use
 the default location for Python 2.7 on most operating systems, but if you
-have Python installed in a diffferent location, please edit common.sh to point
+have Python installed in a different location, please edit it to point
 to the correct location
 
 ## Directories & Files
@@ -86,17 +73,17 @@ The directory tree is organized as follows:
 - `experiments/`: Top level scripts and documentation
 - `experiments/adaptiveCA`: python source files
 - `experiments/cats`: binaries for the [CATS Domain](https://www.cs.ubc.ca/~kevinlb/CATS/) generator
-- `experiments/data`: cached instance files for each domain instance used in the experiments
+- `experiments/data`: cached instance files for each domain instance used in the paper's experiments
 - `experiments/tests`: unit tests
-- `experiments/exeriments`: output files for the experiments.
+- `experiments/experiments`: output files for the experiments.
 
 ### Generator and input file details
 
-The auctions implemented herein are run on several different *instance generators* as part of 
+The auctions implemented for the paper are run on several different *instance generators* as part of 
 the experimental setup.  To facilitate this, the auction instances are obtained by the experimental
 code via `experiments/adaptiveCA/generatorfactory.py`.  Via this interface, calling code can request a particular
 generator, i.e., [CATS](https://www.cs.ubc.ca/~kevinlb/CATS/) or the *Quadratic Value* generator, with 
-a particular parameterization (i.e., for cats, the `PATHS` domain with a certain number of goods and 
+a particular parameterization (e.g., for CATS, the `PATHS` domain with a certain number of goods and 
 a certain number of bids), and then request a particular auction *instance* from that configuration.  
 Instances are indexed by whole numbers.  In the case of CATS, the code will run the CATS binary to 
 generate the the instance, configured as specified.  In the case of the *Quadratic Value* generator, 
@@ -104,14 +91,12 @@ we have our own python implementation that is called (see `adaptiveCA/generators
 
 Regardless of which generator is used, when an instance is requested, after creating the instance, 
 we cache its data as a file in the `experiments/data` directory.  When the instance is subsequently requested, 
-the python code will hydrate the data from this cache file rather than calling the generator again.  
-This caching speeds runtime when running multile auctions over the same instance (since the instance 
-only has to be generated once).  It also guarantees repeatable results (this is belt-and-suspenders, 
-since effort has been taken to ensure that the generator code is deterministic such that re-requesting 
-the same instance index on the same setup should produce an idential instance). 
+the python code will fetch the data from this cache file rather than calling the generator again.  
+This caching speeds runtime when running multiple auctions over the same instance (since the instance 
+only has to be generated once).  It also guarantees reproducible results. 
 
 Because the generators are deterministic, the `experiments/data` directory will be recreated if it 
-is removed and the experiments are rerun.  However, to ensure repeatability, and to save the user from
+is removed and the experiments are rerun.  However, to ensure reproducibility, and to save the user from
 having to ensure that the CATS binary will run on their computer, we include all of the cached generator 
 data files used in our experiments in the `experiments/data` directory.  These will thus be auto-loaded
 by the code if you clone the full repository.
@@ -132,7 +117,7 @@ zipping operation, we handle this directly at the command line, rather than crea
 
 Because of this structure, instead of including an `experiments/experiments` directory, we have instead
 included all of the `.zip` files for the experiments included in the paper in the `analysis/results` directory
-where they are ready for processing by that stage of the process.  None the less, if you run the experimental 
+where they are ready for processing by that stage of the process.  Nonetheless, if you run the experimental 
 code yourself, the `experiments/experiments` directory will be created and populated.
 
 Because both of the raw output file types are in CSV format, it is easy to inspect the results of experiments.
@@ -145,36 +130,51 @@ if you are having trouble getting a script to run (see [Setup](https://github.co
 
 ### Spot Instances (Where to start)
 
-We include a script that enables the "spot testing" of a single auction instance from within one of the
-auction experiments.  This is a nice way to verify that the code works and is running, it can also be 
-useful for debugging.  In most cases, a single auction instance can be run using the default CBC solver
-without installing CPLEX (which requires obtaining an academicly licensed copy from IBM and significant 
-installation overhead).  Running via CBC will be slow, but typically is possible.  
+We include a script that enables one to run our adaptive-price auction, or one of the baselines, on a single auction instance from the experiments run in the paper. This allows one to reproduce results for single auction runs, and it is also useful for debugging. In most cases, a single auction instance can be run using the default CBC solver
+without installing CPLEX.
 
-To run a "spot instance", use the script `experiment/run_auction_instance.sh`
-which is a bash wrapper around `experiments/adaptiveCA/run_auction_instance.py`.
+An example usage is as follows:
 
-There are a number of command-line options for this script, which are displayed if you
-run the command specifying only `--help`.  For reference, these options are as follows:
+> `python run_auction_instance.py --auction_name AdaptiveCuttingAuction --generator cats_reg_g30b150`
 
-- `--auction_name`: Name of the auction class
-- '--epsilon`: Epsilon value
-- `--stepc`: Step size
-- `--epoch`: Number of epochs
-- `--personalized`: Whether to use personalized prices
-- `--generator_param_name`: Generator parameter name
-- `--scalebyvalue`: Whether to scale by value
-- `--maxiter'`: Maximum number of iterations
-- `--maxtime`: Maximum time in seconds
-- `--idx`: Instance index
+The result of this run would be stored in the following file as the default instance index is 1:
+> `Adaptive-Price-CA/experiments/basic_command_line/instances/instance#Idx_1.csv`
 
-Most of these parameters have reasonable defaults.  An example usage is as follows:
+#### Command-Line Arguments for `run_auction_instance.py`
 
-> run_auction_instance.sh
+- `--print_console` (type: `bool`, default: `False`)
+  - Whether to print auction progress to console.
+
+- `--auction_name` (type: `str`, required: `True`)
+  - Name of the auction class. Must be one of: IBundle, LinearClockAuction, LinearSubgradientAuction, LinearHeuristicAuction, AdaptiveCuttingAuction.
+
+- `--generator_param_name` (type: `str`, required: `True`)
+  - Generator parameter name. For a full list of the options, see `generatorfactory.py`. A generator and its parameters are encoded via short-hand strings. Examples: 1) `cats_reg_g20b50` refers to instances generated by CATS from its _regions_ distribution with 20 goods and 50 bids; 2) `qv_g20a5s10c10` refers to instances from the quadratic valuation generator with 20 goods, 5 agents, synergy set size 10, and bundle size cap of 10.
+
+- `--epsilon` (type: `float`, default: `0.05`)
+  - Auction discount. For iBundle, this also corresponds to the price increment.
+
+- `--stepc` (type: `float`, default: `0.02`)
+  - Step size scaling factor.
+
+- `--epoch` (type: `int`, default: `10`)
+  - Number of epochs for price expansion in the adaptive-price auction.
+
+- `--personalized` (type: `bool`, default: `True`)
+  - Whether to use personalized prices from the beginning of the auction.
+
+- `--maxiter` (type: `int`, default: `1000`)
+  - Maximum number of auction rounds.
+
+- `--maxtime` (type: `int`, default: `120`)
+  - Maximum time in seconds.
+
+- `--idx` (type: `int`, default: `1`)
+  - Instance index.
 
 ### Full Experiments (Advanced and Time Consuming) 
 
-To run a full experiment, use the scripy `experiments/experiment.sh`.  This will
+To run a full experiment, use the scipy `experiments/experiment.sh`.  This will
 run a single experiment as defined by a class in `experiments/adaptiveCA/experiments`.
 
 Usage of this script is as follows:
@@ -191,13 +191,9 @@ Example usage is as follows:
 
 **NOTE:** Running a single experiment can take a month on a high-end workstation, even
 when running on CPLEX instead of CBC.  In practice, it is likely that the experiments
-want to be run on a computational grid spread across multiple computers.  Each such grid
+should ideally be run on a computational grid spread across multiple computers.  Each such grid
 has its own configuration and syntax, so we leave it to the user to wrap the `experiment.sh` 
 script into whatever grid environment you are using.
-
-**Note2:** If by contrast you do wish to run an experiment directly on a linux/unix workstation, 
-you will likely want to use the [nohup](https://en.wikipedia.org/wiki/Nohup) command to establish 
-a long-running process that is not tied to a TTY.
 
 ### Running Pytest (Optional) 
 
@@ -205,37 +201,37 @@ We include a top level script for running the unit tests:
 
 > run_pytest.sh
 
-and also PC-specific version that allows usage from a cmd prompt on a PC (which gives coloring, otherwise unavailable in cygwin).
+and also PC-specific version that allows usage from a cmd prompt on a PC:
 
 > run_pytest.bat
 
-Running these tests should really only be needed if adding or modifying the code in the repo.
+Running these tests should only be needed if adding or modifying the code in the repository.
 
 ## Code Details (Advanced)
 
-The auction code is rather involved, but we here provide a high-level overview of the included code files:
+We provide here a high-level overview of the included code files:
 
 ### Auction and Math Programming 
 
-- `experiments/adaptiveCA/agents.py': Define different types of agent preferences (e.g., MultiMinded or QuadraticValued)
-- `experiments/adaptiveCA/auctions.py': Define the different auction types used, including both the Adaptive Price Auction and various baseline alternatives.
-- `experiments/adaptiveCA/generatorfactory.py': Top level interface to the domain generator code 
-- `experiments/adaptiveCA/generators.py':  Low level code for calling *CATS* or implementing the *Qudratic Value* domain.
-- `experiments/adaptiveCA/instrumentation.py': Code to instrument data about running auction instances and record that data in the `experiments/experiments` directory for subsequent analysis by scripts in the `analysis` branch of the repo.
-- `experiments/adaptiveCA/mpsolve.py': Unified access to various Math Program solvers including both CPEX and a default Open Source solver. This wraps [PULP](https://coin-or.github.io/pulp/)'s entry point to provide additional control over things like the number of CPU cores used.
-- `experiments/adaptiveCA/prices.py': Various types of pricing structures used to implement the auctions 
-- `experiments/adaptiveCA/structs.py': Various data structures used to define auctions, e.g. allocations, valuations etc.
-- `experiments/adaptiveCA/wd.py': Implemenation of the core winner determination MIP for the auctions based on the [PULP](https://coin-or.github.io/pulp/) library and the `mpsolve.py` interface.
-- `experiments/adaptiveCA/util/modcsv.py`: A custom implmentation of CSV writing that allows the *insertion* of data into existing files, which the default CSV implementation in python does not do.  This is used for certain high-performance operations in `instrumation.py`.
+- `experiments/adaptiveCA/agents.py`: Define different types of agent preferences (e.g., MultiMinded or QuadraticValued).
+- `experiments/adaptiveCA/auctions.py`: Define the different auction types used, including both the Adaptive Price Auction and various baseline alternatives.
+- `experiments/adaptiveCA/generatorfactory.py`: Top level interface to the domain generator code .
+- `experiments/adaptiveCA/generators.py`:  Low level code for calling *CATS* or implementing the *Quadratic Value* domain.
+- `experiments/adaptiveCA/instrumentation.py`: Code to instrument data about running auction instances and record that data in the `experiments/experiments` directory for subsequent analysis by scripts in the `analysis` branch of the repo.
+- `experiments/adaptiveCA/mpsolve.py`: Unified access to various Math Program solvers including both CPLEX and a default Open Source solver. This wraps [PULP](https://coin-or.github.io/pulp/)'s entry point to provide additional control over things like the number of CPU cores used.
+- `experiments/adaptiveCA/prices.py`: Various types of pricing structures used to implement the auctions.
+- `experiments/adaptiveCA/structs.py`: Various data structures used to define auctions (e.g. allocations, valuations etc.).
+- `experiments/adaptiveCA/wd.py`: Implementation of the core winner determination MIP for the auctions based on the [PULP](https://coin-or.github.io/pulp/) library and the `mpsolve.py` interface.
+- `experiments/adaptiveCA/util/modcsv.py`: A custom implementation of CSV writing that allows the *insertion* of data into existing files, which the default CSV implementation in python does not do.  This is used for certain high-performance operations in `instrumentation.py`.
 
 ### Experimental Setup
 
 - `experiments/adaptiveCA/experiments/experiment.py`: Base classes for defining experiments.
-- `experiments/adaptiveCA/experiments/cpurestrict.py`: utility class to control how many cores an experiment gets (needed to ensure runtime data is accurate).
-- `experiments/adaptiveCA/experiments/debug_experiment.py`: helper class to facilitate debugging experiments
+- `experiments/adaptiveCA/experiments/cpurestrict.py`: Utility class to control how many cores an experiment gets (needed to ensure runtime data is accurate).
+- `experiments/adaptiveCA/experiments/debug_experiment.py`: Helper class to facilitate debugging experiments.
 
-- `experiments/adaptiveCA/experiments/basic.py`: Run the *basic* experiment for most auction types
-- `experiments/adaptiveCA/experiments/cutting.py`: Run the *basic* experiment for the *Adaptive Cutting* auction
-- `experiments/adaptiveCA/experiments/lca.py`: Run the *basic* experiment for the *Linear Clock* auction
+- `experiments/adaptiveCA/experiments/basic.py`: Run the *basic* experiment for most auction types.
+- `experiments/adaptiveCA/experiments/cutting.py`: Run the *basic* experiment for the *Adaptive Cutting* auction.
+- `experiments/adaptiveCA/experiments/lca.py`: Run the *basic* experiment for the *Linear Clock* auction.
 - `experiments/adaptiveCA/experiments/strategy.py`: Run the *strategy* experiment to investigate bidder manipulation.
 - `experiments/adaptiveCA/experiments/xorprices.py`: Run the *xorprices* experiment that gathers additional pricing information.

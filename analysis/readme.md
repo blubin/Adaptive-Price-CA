@@ -1,4 +1,4 @@
-# Data Analysis For *Adpative Pricing in Combinatorial Auctions*
+# Data Analysis For *Adaptive Pricing in Combinatorial Auctions*
 
 ## Overview 
 
@@ -10,7 +10,7 @@ scripts is provided below.
 ## Requirements
 
 To run the analysis, you will need a modern Bash shell
-interpreter, and an install of R.  The scripts were origionally run on
+interpreter, and an R installation.  The scripts were originally run on
 a PC with the cygwin environment (which provides bash and latex on that OS), 
 but they should work on linux or mac as well.
 
@@ -25,14 +25,14 @@ been tested to work with R 4.4.1 with some ignorable warnings.
 The first step in running the analysis scripts is to configure your
 environment.  To do this, edit the `common.sh` script and verify that the
 path to your R environment as indicated in the file.   The file
-is pre-configued to work on most Linux/Mac/PC-cygwin machines, but
+is pre-configured to work on most Linux/Mac/PC-cygwin machines, but
 it is a good idea to double check the paths.
 
 Next run the `Setup.sh` file to configure your R environment.  This
 will download and install all of the needed R packages into a local
 directory called `packages`.
 
-## Directies & Files
+## Directories & Files
 
 ### Directory Details
 
@@ -40,18 +40,18 @@ The directory tree is organized as follows:
 
 - `analysis`: Contains this readme and the scripts themselves.
 - `analysis/packages`: Created by the `Setup.sh` script, this contains the downloaded R packages
-- `analysis/results`: Results of the *experiments*, i.e., `.zip` files.  This is the *input* to the *analysis* described herein. 
-- `analysis/plots`: *analysis Output* -- The plots needed for the paper
-- `analysis/tables`: *analysis Output* -- The tables needed for the paper
+- `analysis/results`: Results of the *experiments*, i.e., `.zip` files.  This is the *input* to the analysis. 
+- `analysis/plots`: *analysis output* -- The plots needed for the paper.
+- `analysis/tables`: *analysis output* -- The tables needed for the paper.
 
 The experimental `results` directory (again, these are inputs to the analysis) 
 is further broken into the following sub-directories:
 
 - `basic`: The *basic* experiment, for most auction types.
-- `cutting`: The *basic* experiment, specifically for the *cutting* auction.
-- `lca`: The *basic* experiment, specifically for the *lca* auction.
-- `strategy`: The *strategy* experiment, looking at bidder misreports.
-- `xorprices`: The *xorprices* experiment, for examining pricing in the auction.
+- `cutting`: The *basic* experiment, specifically for the *cutting* auction (the adaptive-price auction).
+- `lca`: The *basic* experiment, specifically for the *lca* auction (the linear clock auction).
+- `strategy`: The *strategy* experiment, to study bidder misreports.
+- `xorprices`: The *xorprices* experiment, to study pricing in the auction.
 
 When output is created by the scripts in the `plots` and `tables`
 directories, subdirectories mirroring the input directory structure
@@ -60,8 +60,8 @@ on the output side.)
 
 ### Data File Details
 
-The `.zip` files contain .csv files.  So they can be extracted and
-inpsected using standard tools.  Upon first run, the scripts will load
+The `.zip` files contain .csv files so that they can be extracted and
+inspected using standard tools.  Upon first run, the scripts will load
 the data from the `.zip` files and create cached
 [`feather`](https://github.com/wesm/feather) files that are used in
 the actual analysis.  These `feather` files can be quite large, so you
@@ -81,7 +81,7 @@ for inclusion in the paper latex with a `\input{ ... }` call.  Second,
 the scripts themselves run latex on this tex fragment and generate a
 standalone PDF version of the table.  This allows for a quick
 inspection of the tex content, and to verify the final paper content
-is including the tables as expected.  This latex compiliation is only
+is including the tables as expected.  This latex compilation is only
 run if the generated `.tex` file has changed, and an `.md5` file is
 created as part of this check.  You will also see files with a 
 `_doc.tex` suffix that are created to enable these preview PDFs.
@@ -104,11 +104,11 @@ intended for command-line use:
 - `Analyze.sh`: Script for running all of the other analysis scripts in turn.
 - `Basic.sh`: Script for running the *basic* experiment analysis.
 - `Strategy.sh`: Script for running the *strategy* experiment analysis.
-- `XorPrices.sh`: Script for running the *xorprices* experiement analysis.
+- `XorPrices.sh`: Script for running the *xorprices* experiment analysis.
 
 The directory also contains:
 
-- `comon.sh`: which is included in the other bash scripts to provide needed environment variables.
+- `common.sh`: which is included in the other bash scripts to provide needed environment variables.
 
 Please note that these scripts can take some time to run, especially
 the `XorPricing.sh` script that has to build a histogram which is time
@@ -116,7 +116,7 @@ consuming.
 
 ### Advanced: Loading the data for inspection
 
-Each of the experiement analysis bash scripts above has a
+Each of the experiment analysis bash scripts above has a
 corresponding `.R` script that contains the actual analysis code.  If
 you wish to inspect the experimental data in e.g. RStudio, you can run
 the `.R` script in *interactive* mode inside the IDE.  The scripts
