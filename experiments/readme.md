@@ -50,7 +50,8 @@ If you would like to use [CATS](https://www.cs.ubc.ca/~kevinlb/CATS/) to create
 new domain instances beyond those used for the paper's experiments, you will need to ensure that
 your environment is setup to run the binary.  Binaries for Windows and Unix are included in the `experiments/cats` 
 directory.  For MacOS, CATS needs to be built from source.
-Please follow the link above for instructions on configuring CATS.
+Please follow the link above for instructions on configuring CATS.  Note that getting CATS to
+run can be challenging, e.g., for a PC you will likely need the 32 bit version of cygwin installed.
 
 ### Pytest (Optional) 
 If you would like to be able to use [pytest](https://docs.pytest.org/en/stable/getting-started.html)
