@@ -9,18 +9,18 @@ implemented here starts with linear prices and then adaptively adds non-linear t
 is achieved.  The mechanism can also switch from anonymous to non-anonymous prices if and when this is necessary for
 clearing.
 
-This implementation is the companion to the following paper.  Please cite any reference or use accordingly:
+This implementation is the companion to the following paper, available via open access.  Please cite any reference or use accordingly:
 
-> Lahaie, Sébastien, and Benjamin Lubin. ["Adaptive Pricing in Combinatorial Auctions."](https://pubsonline.informs.org/action/doSearch?AllField=adaptive+pricing+in+combinatorial+auctions&SeriesKey=mnsc) In _Management Science_, Forthcoming.
+> Sébastien Lahaie, Benjamin Lubin (2025) [Adaptive Pricing in Combinatorial Auctions](https://pubsonline.informs.org/doi/10.1287/mnsc.2024.4993). _Management Science_ (Forthcoming).
 
 Corresponding BibTex is as follows:
 
 ```
-@article{lahaielubin24adaptive,
+@article{lahaielubin25adaptive,
   author={Lahaie, S{\'e}bastien and Lubin, Benjamin},
   title={Adaptive Pricing in Combinatorial Auctions},
   journal={Management Science},
-  year={2024, forthcoming},
+  year={2025, forthcoming},
   publisher={{INFORMS}},
 }
 ```
